@@ -1,0 +1,27 @@
+#!/bin/sh
+
+if [ -z $1 ]; then
+    echo "Error: no filename specified"
+    exit 1
+fi
+
+if [ "${1##*.}" != c ]; then
+    FILENAME=${1}.c
+else
+    FILENAME=$1
+fi
+
+if [ -f $FILENAME ]; then
+    echo "Error: file exists"
+    exit 1
+fi
+
+cat > $FILENAME <<EOF
+#include <stdio.h>
+
+int main() {
+
+
+    return 0;
+}
+EOF
